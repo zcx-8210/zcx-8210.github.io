@@ -1,0 +1,122 @@
+ <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简介</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('背景图.webp');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .photo-cell {
+            text-align: center;
+        }
+        .icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+            vertical-align: middle;
+            background-size: cover;
+        }
+        ol {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .skill-icon {
+            background-image: url('icons/skill.svg');
+        }
+        .interest-icon {
+            background-image: url('icons/interest.svg');
+        }
+    </style>
+</head>
+<body>
+    <h1>个人简介</h1>
+
+    <table align="center">
+        <caption>个人信息表</caption>
+        <tr>
+            <th rowspan="5">照片</th>
+            <td class="photo-cell" rowspan="5"><img src="证件照.jpg" alt="照片" style="max-width: 150px; border-radius: 50%;"></td>
+            <th>姓名</th>
+            <td>赵晨茜</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>zcx-8210@qq.com</td>
+        </tr>
+        <tr>
+            <th>电话</th>
+            <td>18853556737</td>
+        </tr>
+        <tr>
+            <th>教育背景</th>
+            <th>软件工程专业，本科</td>
+        </tr>
+        <tr>
+            <th>项目经历</th>
+            <td>2025年软件杯大赛本科组 - 智能推荐系统的设计与实现</td>
+        </tr>
+        <tr>
+            <th>技能证书</th>
+            <td colspan="3">
+                <ol>
+                    <li><span class="icon skill-icon"></span>素描五级证书</li>
+                    <li><span class="icon skill-icon"></span>爵士舞七级证书</li>
+                    <li><span class="icon skill-icon"></span>书法三级证书</li>
+                </ol>
+            </td>
+        </tr>
+        <tr>
+            <th>自我评价</th>
+            <td colspan="3">
+                <p>本人热爱编程，具有扎实的计算机基础和良好的团队合作精神。熟练掌握多种编程语言和技术栈，善于解决复杂的技术问题。</p>
+                <p>我热爱生活，善于观察并发现生活中的美好，并喜欢拍照留念纪念生活的美好与温暖。我尤其喜欢毛茸茸的小动物特别是猫，作为一个有点少女心的女生，我永远不失去对毛茸茸的喜爱。</p>
+                <p>未来的理想是养一猫一狗，过上月入过万朝九晚五每周双休的稳定生活，并一直以此为动力来激励自己，通过持续不懈的努力来使自己接近自己的目标。</p>
+                <p>我日常积极上进，虽在工作学习上频频碰壁，但总能及时调整自己的心态，以更加坚韧乐观的心态突破自己战胜自己，我的未来或许磕磕绊绊，但永远徐徐上升。</p>
+            </td>
+        </tr>
+        <tr>
+            <th>兴趣爱好</th>
+            <td colspan="3">
+                <ol>
+                    <li><span class="icon interest-icon"></span>阅读小说</li>
+                    <li><span class="icon interest-icon"></span>绘画</li>
+                    <li><span class="icon interest-icon"></span>打游戏</li>
+                </ol>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>          
