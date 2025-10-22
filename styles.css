@@ -1,0 +1,222 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* 确保padding不影响元素总宽度 */
+}
+
+body {
+    margin: 0;
+    font-family: "Microsoft YaHei", Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    padding: 0 10px;
+}
+
+/* 头部样式 */
+header {
+    background-color: #f8f9fa;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0; /* 增加底部边框区分区域 */
+    margin-bottom: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* 图片与文字间距 */
+    font-size: 24px;
+    font-weight: bold;
+    color: #c0504d; /* 主色调突出品牌 */
+}
+
+.logo img {
+    display: block; /* 消除图片底部间隙 */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px; /* 导航项间距更合理 */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 5px 0;
+    transition: color 0.3s; /* 平滑过渡效果 */
+}
+
+nav ul li a:hover {
+    color: #c0504d; /*  hover颜色与品牌呼应 */
+}
+
+/* 主内容区布局 */
+.main-content {
+    display: flex;
+    gap: 25px; /* 三栏间距统一 */
+    max-width: 1200px; /* 限制最大宽度，避免大屏幕拉伸 */
+    margin: 0 auto; /* 居中显示 */
+    padding: 0 10px;
+}
+
+/* 左侧边栏 */
+.left-sidebar {
+    width: 160px; /* 适当缩小宽度，避免占比过大 */
+    flex-shrink: 0; /* 不收缩 */
+}
+
+.left-sidebar ul {
+    list-style: none;
+    background-color: #f9f5f0;
+    border-radius: 8px;
+    padding: 15px; /* 内部间距 */
+}
+
+.left-sidebar ul li {
+    margin-bottom: 12px;
+}
+
+.left-sidebar ul li a {
+    text-decoration: none;
+    color: #555;
+    display: block; /* 扩大点击区域 */
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.left-sidebar ul li a:hover {
+    background-color: #e8e0d5;
+    color: #c0504d;
+}
+
+/* 中间内容区 */
+.middle-content {
+    flex: 1; /* 占剩余空间 */
+    min-width: 0; /* 避免内容溢出 */
+}
+
+/* 推荐栏样式 */
+.hot-recommend {
+    display: flex;
+    flex-wrap: wrap; /* 自动换行 */
+    gap: 20px; /* 项目间距 */
+    padding: 20px;
+    background-color: #f9f5f0;
+    border: 2px solid #d4b891;
+    border-radius: 8px;
+    margin-bottom: 30px; /* 与表格间距 */
+}
+
+.item {
+    text-align: center;
+    width: 100px; /* 固定宽度匹配图片 */
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #e0c8a8;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    flex-shrink: 0; /* 不收缩 */
+}
+
+.item img {
+    display: block; /* 消除底部间隙 */
+    margin: 0 auto; /* 图片居中 */
+    object-fit: cover; /* 保持图片比例 */
+}
+
+.item-title {
+    margin-top: 10px; /* 图片与文字间距 */
+    font-size: 14px;
+    color: #333;
+    white-space: nowrap; /* 文字不换行 */
+    overflow: hidden;
+    text-overflow: ellipsis; /* 过长显示省略号 */
+}
+
+/* 分隔线（替代hr） */
+.divider {
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 25px 0; /* 上下间距 */
+}
+
+/* 表格样式 */
+.new-books {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden; /* 配合圆角 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.new-books th, .new-books td {
+    border: 1px solid #f0e8e0;
+    padding: 12px 15px; /* 增大内边距，更易读 */
+    text-align: left;
+}
+
+.new-books th {
+    background-color: #f2e9e0;
+    font-weight: 600;
+    color: #555;
+}
+
+.new-books tr:hover {
+    background-color: #faf7f4; /* 行hover效果 */
+}
+
+/* 右侧边栏 */
+.right-sidebar {
+    width: 200px;
+    flex-shrink: 0; /* 不收缩 */
+}
+
+.promotion {
+    background-color: #f2e9e0;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #c0504d;
+    border-radius: 8px 8px 0 0; /* 顶部圆角 */
+    border: 2px solid #d4b891;
+    border-bottom: none; /* 与内容区合并边框 */
+}
+
+.promo-content {
+    padding: 15px;
+    background-color: white;
+    border: 2px solid #d4b891;
+    border-radius: 0 0 8px 8px; /* 底部圆角 */
+    border-top: none;
+    text-align: center;
+    line-height: 1.8;
+}
+
+/* 响应式适配（小屏幕） */
+@media (max-width: 900px) {
+    .main-content {
+        flex-direction: column; /* 垂直排列 */
+    }
+
+    .left-sidebar, .right-sidebar {
+        width: 100%; /* 占满宽度 */
+        margin-bottom: 20px;
+    }
+
+    .left-sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px; /* 横向排列 */
+    }
+
+    .left-sidebar ul li {
+        margin-bottom: 0;
+    }
+}
