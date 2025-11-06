@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>晋江文学城 - 精品小说平台</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 核心变量定义 */
+        :root {
+            --jj-red: #A62424;
+            --jj-red-light: #C83636;
+            --jj-bg: #F9F2EE;
+            --jj-text: #332A24;
+            --jj-gray: #7D6F64;
+            --jj-white: #FFFFFF;
+            --jj-border: #E8DCD2;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-hover: 0 8px 30px rgba(0,0,0,0.15);
+            --transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Serif SC", "SimSun", serif;
+            line-height: 1.7;
+            color: var(--jj-text);
+            background-color: var(--jj-bg);
+            min-height: 100vh;
+        }
+
+        /* 顶部通知栏 */
+        .top-notice {
+            background: linear-gradient(135deg, var(--jj-red), var(--jj-red-light));
+            color: white;
+            padding: 12px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .notice-close {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .notice-close:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        /* 主容器 */
+        .main-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 头部导航 */
+        .main-header {
+            background: var(--jj-white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .site-logo {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        .logo {
+            font-size: 28px;
+            color: var(--jj-red);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* 主导航 */
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: var(--jj-text);
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 6px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .main-nav a:hover {
+            background-color: #f5efe8;
+            color: var(--jj-red);
+        }
+
+        /* 搜索和用户操作 */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 20px 10px 45px;
+            border: 1px solid var(--jj-border);
+            border-radius: 30px;
+            background-color: #f5efe8;
+            outline: none;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .search-box input:focus {
+            border-color: var(--jj-red-light);
+            background-color: var(--jj-white);
+            box-shadow: 0 0 0 2px rgba(166, 36, 36, 0.1);
+        }
+
+        .search-btn {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--jj-gray);
+            cursor: pointer;
+        }
+
+        .cart-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--jj-text);
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .cart-btn:hover {
+            background-color: #f5efe8;
+            color: var(--jj-red);
+        }
+
+        /* 主内容区 - 传统三栏布局 */
+        .main-content {
+            display: grid;
+            grid-template-columns: 220px 1fr 300px;
+            gap: 30px;
+            padding: 30px 0;
+            align-items: start;
+        }
+
+        /* 左侧边栏 */
+        .sidebar {
+            background: var(--jj-white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 25px;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--jj-red);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--jj-border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-list li {
+            margin-bottom: 12px;
+        }
+
+        .category-list a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: var(--jj-text);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .category-list a:hover {
+            background-color: #f5efe8;
+            color: var(--jj-red);
+            transform: translateX(5px);
+        }
+
+        /* 中间内容区 */
+        .content-area {
+            min-height: 800px;
+        }
+
+        /* 轮播图 */
+        .banner {
+            position: relative;
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .banner-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .banner-item.active {
+            opacity: 1;
+        }
+
+        .banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .banner-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+        }
+
+        .banner-info h3 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .banner-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* 内容区块 */
+        .content-section {
+            background: var(--jj-white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--jj-border);
+        }
+
+        .section-title {
+            font-size: 22px;
+            color: var(--jj-text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--jj-red);
+        }
+
+        .view-more {
+            color: var(--jj-gray);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        .view-more:hover {
+            color: var(--jj-red);
+        }
+
+        /* 小说网格 */
+        .novel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        /* 小说卡片 */
+        .novel-card {
+            background: var(--jj-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .novel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .novel-cover {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .novel-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .novel-card:hover .novel-img {
+            transform: scale(1.05);
+        }
+
+        .book-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .badge-hot {
+            background: var(--jj-red);
+        }
+
+        .badge-new {
+            background: #4CAF50;
+        }
+
+        .badge-discount {
+            background: #FF9800;
+        }
+
+        .novel-info {
+            padding: 20px;
+        }
+
+        .novel-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--jj-text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .novel-author {
+            font-size: 14px;
+            color: var(--jj-gray);
+            margin-bottom: 12px;
+        }
+
+        .novel-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .novel-tags span {
+            padding: 4px 10px;
+            background: #f0e8e2;
+            border-radius: 15px;
+            font-size: 12px;
+            color: var(--jj-gray);
+        }
+
+        .novel-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .novel-views {
+            font-size: 13px;
+            color: var(--jj-gray);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .novel-price {
+            color: var(--jj-red);
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* 右侧边栏 */
+        .promotion-sidebar {
+            position: sticky;
+            top: 100px;
+        }
+
+        .promotion-card {
+            background: var(--jj-white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .promotion-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .promotion-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f5f5f5;
+            transition: var(--transition);
+        }
+
+        .promotion-item:hover {
+            transform: translateX(5px);
+        }
+
+        .promotion-item:last-child {
+            border-bottom: none;
+        }
+
+        .promotion-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--jj-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .promotion-content h4 {
+            font-size: 15px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .promotion-content p {
+            font-size: 13px;
+            color: var(--jj-gray);
+        }
+
+        /* 页脚 */
+        .main-footer {
+            background: var(--jj-white);
+            border-top: 1px solid var(--jj-border);
+            padding: 50px 0 30px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: var(--jj-text);
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--jj-gray);
+            font-size: 14px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--jj-red);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--jj-border);
+            color: var(--jj-gray);
+            font-size: 14px;
+        }
+
+        /* 悬浮元素 */
+        .floating-cart {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--jj-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: var(--shadow-hover);
+            cursor: pointer;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .floating-cart:hover {
+            background: var(--jj-red-light);
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: white;
+            color: var(--jj-red);
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .back-to-top {
+            position: fixed;
+            right: 30px;
+            bottom: 100px;
+            width: 45px;
+            height: 45px;
+            background: var(--jj-white);
+            border: none;
+            border-radius: 50%;
+            box-shadow: var(--shadow-hover);
+            color: var(--jj-red);
+            cursor: pointer;
+            z-index: 1000;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--jj-red);
+            color: white;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 200px 1fr 280px;
+                gap: 25px;
+            }
+            
+            .novel-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .sidebar, .promotion-sidebar {
+                position: static;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .search-box {
+                order: 3;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .novel-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .banner {
+                height: 300px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .main-nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .novel-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部通知 -->
+    <div class="top-notice">
+        <div class="main-wrapper">
+            国庆特惠：全场小说限时8折，新用户注册即享5元优惠券！
+            <button class="notice-close"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+
+    <!-- 主头部 -->
+    <header class="main-header">
+        <div class="main-wrapper">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="logo.png" alt="晋江文学城" class="site-logo">
+                    <h1 class="logo">晋江文学城</h1>
+                </div>
+
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#"><i class="fas fa-home"></i> 首页</a></li>
+                        <li><a href="#"><i class="fas fa-star"></i> 新书推荐</a></li>
+                        <li><a href="#"><i class="fas fa-chart-line"></i> 热门榜单</a></li>
+                        <li><a href="#"><i class="fas fa-pen-fancy"></i> 作者专区</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="搜索小说、作者...">
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                    <a href="#" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        购物车
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容 -->
+    <div class="main-wrapper">
+        <div class="main-content">
+            <!-- 左侧边栏 -->
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title"><i class="fas fa-list"></i> 小说分类</h3>
+                    <ul class="category-list">
+                        <li><a href="#"><i class="fas fa-heart"></i> 纯爱</a></li>
+                        <li><a href="#"><i class="fas fa-ring"></i> 言情</a></li>
+                        <li><a href="#"><i class="fas fa-puzzle-piece"></i> 衍生</a></li>
+                        <li><a href="#"><i class="fas fa-feather-alt"></i> 原创</a></li>
+                        <li><a href="#"><i class="fas fa-user"></i> 无cp</a></li>
+                        <li><a href="#"><i class="fas fa-dragon"></i> 玄幻</a></li>
+                        <li><a href="#"><i class="fas fa-user-ninja"></i> 武侠</a></li>
+                        <li><a href="#"><i class="fas fa-robot"></i> 科幻</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title"><i class="fas fa-filter"></i> 筛选</h3>
+                    <ul class="category-list">
+                        <li><a href="#"><i class="fas fa-tag"></i> 价格区间</a></li>
+                        <li><a href="#"><i class="fas fa-file-alt"></i> 字数</a></li>
+                        <li><a href="#"><i class="fas fa-flag"></i> 状态</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- 中间内容区 -->
+            <main class="content-area">
+                <!-- 轮播图 -->
+                <section class="banner">
+                    <div class="banner-item active">
+                        <img src="小蘑菇.png" alt="小蘑菇" class="banner-img">
+                        <div class="banner-info">
+                            <h3>《小蘑菇》</h3>
+                            <p>末世废土 | 奇幻冒险 | 人气作品</p>
+                        </div>
+                    </div>
+                    <div class="banner-item">
+                        <img src="方尖碑.png" alt="方尖碑" class="banner-img">
+                        <div class="banner-info">
+                            <h3>《方尖碑》</h3>
+                            <p>科幻悬疑 | 硬核世界观 | 新作上线</p>
+                        </div>
+                    </div>
+                    <div class="banner-item">
+                        <img src="逆鳞.png" alt="逆鳞" class="banner-img">
+                        <div class="banner-info">
+                            <h3>《逆鳞》</h3>
+                            <p>古风权谋 | 强强对抗 | 完结佳作</p>
+                        </div>
+                    </div>
+                    <div class="banner-controls">
+                        <span class="indicator active"></span>
+                        <span class="indicator"></span>
+                        <span class="indicator"></span>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fas fa-fire"></i> 热门小说</h2>
+                        <a href="#" class="view-more">查看全部 <i class="fas fa-angle-right"></i></a>
+                    </div>
+                    <div class="novel-grid">
+                        <div class="novel-card">
+                            <div class="novel-cover">
+                                <img src="十维公约.png" alt="十维公约" class="novel-img">
+                                <div class="book-badge badge-hot">热门</div>
+                            </div>
+                            <div class="novel-info">
+                                <h3 class="novel-title">《十维公约》</h3>
+                                <p class="novel-author">作者：方便面与调料包</p>
+                                <div class="novel-tags">
+                                    <span>科幻</span>
+                                    <span>轻小说</span>
+                                </div>
+                                <div class="novel-meta">
+                                    <span class="novel-views"><i class="fas fa-eye"></i> 24.5万</span>
+                                    <span class="novel-price">¥59.9</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="novel-card">
+                            <div class="novel-cover">
+                                <img src="小蘑菇.png" alt="小蘑菇" class="novel-img">
+                                <div class="book-badge badge-new">新书</div>
+                            </div>
+                            <div class="novel-info">
+                                <h3 class="novel-title">《小蘑菇》</h3>
+                                <p class="novel-author">作者：一十四洲</p>
+                                <div class="novel-tags">
+                                    <span>末世</span>
+                                    <span>奇幻</span>
+                                </div>
+                                <div class="novel-meta">
+                                    <span class="novel-views"><i class="fas fa-eye"></i> 35.2万</span>
+                                    <span class="novel-price">¥49.9</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="novel-card">
+                            <div class="novel-cover">
+                                <img src="方尖碑.png" alt="方尖碑" class="novel-img">
+                                <div class="book-badge badge-hot">热门</div>
+                            </div>
+                            <div class="novel-info">
+                                <h3 class="novel-title">《方尖碑》</h3>
+                                <p class="novel-author">作者：一十四洲</p>
+                                <div class="novel-tags">
+                                    <span>科幻</span>
+                                    <span>悬疑</span>
+                                </div>
+                                <div class="novel-meta">
+                                    <span class="novel-views"><i class="fas fa-eye"></i> 18.7万</span>
+                                    <span class="novel-price">¥39.9</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="novel-card">
+                            <div class="novel-cover">
+                                <img src="烈火浇愁.png" alt="烈火浇愁" class="novel-img">
+                                <div class="book-badge badge-hot">热门</div>
+                            </div>
+                            <div class="novel-info">
+                                <h3 class="novel-title">《烈火浇愁》</h3>
+                                <p class="novel-author">作者：priest</p>
+                                <div class="novel-tags">
+                                    <span>科幻</span>
+                                    <span>幻想</span>
+                                </div>
+                                <div class="novel-meta">
+                                    <span class="novel-views"><i class="fas fa-eye"></i> 18.7万</span>
+                                    <span class="novel-price">¥39.9</span>
+                                </div>
+                            </div>
+                        </div>
+ 
+                        <div class="novel-card">
+                            <div class="novel-cover">
+                                <img src="不见上仙三百年.png" alt="不见上仙三百年" class="novel-img">
+                                <div class="book-badge badge-hot">热门</div>
+                            </div>
+                            <div class="novel-info">
+                                <h3 class="novel-title">《不见上仙三百年》</h3>
+                                <p class="novel-author">作者：木苏里</p>
+                                <div class="novel-tags">
+                                    <span>修仙</span>
+                                    <span>唯美</span>
+                                </div>
+                                <div class="novel-meta">
+                                    <span class="novel-views"><i class="fas fa-eye"></i> 18.7万</span>
+                                    <span class="novel-price">¥39.9</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="novel-card">
+                            <div class="novel-cover">
+                                <img src="逆鳞.png" alt="逆鳞" class="novel-img">
+                                <div class="book-badge badge-discount">8折</div>
+                            </div>
+                            <div class="novel-info">
+                                <h3 class="novel-title">《逆鳞》</h3>
+                                <p class="novel-author">作者：一十四洲</p>
+                                <div class="novel-tags">
+                                    <span>古风</span>
+                                    <span>仙侠</span>
+                                </div>
+                                <div class="novel-meta">
+                                    <span class="novel-views"><i class="fas fa-eye"></i> 42.1万</span>
+                                    <span class="novel-price">¥69.9</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 新书推荐 -->
+                <section class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fas fa-star"></i> 新书推荐</h2>
+                        <a href="#" class="view-more">查看全部 <i class="fas fa-angle-right"></i></a>
+                    </div>
+                    <div class="novel-grid">
+                        <div class="novel-card">
+                            <div class="novel-cover">
+                                <img src="https://via.placeholder.com/200x250/FF9800/FFFFFF?text=新书" alt="新书" class="novel-img">
+                                <div class="book-badge badge-new">新书</div>
+                            </div>
+                            <div class="novel-info">
+                                <h3 class="novel-title">《人形机械》</h3>
+                                <p class="novel-author">作者：讳疾</p>
+                                <div class="novel-tags">
+                                    <span>未来</span>
+                                    <span>异能</span>
+                                </div>
+                                <div class="novel-meta">
+                                    <span class="novel-views"><i class="fas fa-eye"></i> 15.2万</span>
+                                    <span class="novel-price">¥45.9</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="novel-card">
+                            <div class="novel-cover">
+                                <img src="https://via.placeholder.com/200x250/9C27B0/FFFFFF?text=新书" alt="新书" class="novel-img">
+                                <div class="book-badge badge-new">新书</div>
+                            </div>
+                            <div class="novel-info">
+                                <h3 class="novel-title">《洄天》</h3>
+                                <p class="novel-author">作者：淮上</p>
+                                <div class="novel-tags">
+                                    <span>科幻</span>
+                                    <span>未来</span>
+                                </div>
+                                <div class="novel-meta">
+                                    <span class="novel-views"><i class="fas fa-eye"></i> 22.7万</span>
+                                    <span class="novel-price">¥55.9</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <aside class="promotion-sidebar">
+                <div class="promotion-card">
+                    <h3 class="sidebar-title"><i class="fas fa-gift"></i> 促销活动</h3>
+                    <div class="promotion-item">
+                        <div class="promotion-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <div class="promotion-content">
+                            <h4>新用户专享</h4>
+                            <p>注册即送5元优惠券</p>
+                        </div>
+                    </div>
+                    <div class="promotion-item">
+                        <div class="promotion-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="promotion-content">
+                            <h4>限时折扣</h4>
+                            <p>精选小说低至5折</p>
+                        </div>
+                    </div>
+                    <div class="promotion-item">
+                        <div class="promotion-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <div class="promotion-content">
+                            <h4>包邮活动</h4>
+                            <p>满99元全国包邮</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 热门作者 -->
+                <div class="promotion-card">
+                    <h3 class="sidebar-title"><i class="fas fa-user-edit"></i> 热门作者</h3>
+                    <div class="promotion-item">
+                        <div class="promotion-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="promotion-content">
+                            <h4>一十四洲</h4>
+                            <p>代表作：《小蘑菇》</p>
+                        </div>
+                    </div>
+                    <div class="promotion-item">
+                        <div class="promotion-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="promotion-content">
+                            <h4>方便面与调料包</h4>
+                            <p>代表作：《十维公约》</p>
+                        </div>
+                    </div>
+                    <div class="promotion-item">
+                        <div class="promotion-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="promotion-content">
+                            <h4>一十四洲</h4>
+                            <p>代表作：《逆鳞》</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="main-footer">
+        <div class="main-wrapper">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于我们</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-angle-right"></i> 公司简介</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> 联系我们</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> 招聘信息</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> 商务合作</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>读者服务</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-angle-right"></i> 帮助中心</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> 用户协议</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> 隐私政策</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> 意见反馈</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>作者服务</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-angle-right"></i> 作者专区</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> 投稿指南</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> 作家福利</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> 版权声明</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>关注我们</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fab fa-weibo"></i> 微博</a></li>
+                        <li><a href="#"><i class="fab fa-weixin"></i> 微信</a></li>
+                        <li><a href="#"><i class="fab fa-qq"></i> QQ群</a></li>
+                        <li><a href="#"><i class="fas fa-comments"></i> 客服</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2023 晋江文学城 版权所有 | 京ICP备12345678号</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 悬浮购物车 -->
+    <div class="floating-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">3</span>
+    </div>
+
+    <!-- 返回顶部 -->
+    <button class="back-to-top"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        // 轮播图功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const bannerItems = document.querySelectorAll('.banner-item');
+            const indicators = document.querySelectorAll('.indicator');
+            let currentIndex = 0;
+            let bannerInterval;
+
+            function startBanner() {
+                bannerInterval = setInterval(() => {
+                    goToSlide(currentIndex + 1);
+                }, 5000);
+            }
+
+            function goToSlide(index) {
+                if (index >= bannerItems.length) index = 0;
+                if (index < 0) index = bannerItems.length - 1;
+
+                bannerItems.forEach((item, i) => {
+                    item.classList.toggle('active', i === index);
+                });
+                indicators.forEach((ind, i) => {
+                    ind.classList.toggle('active', i === index);
+                });
+
+                currentIndex = index;
+            }
+
+            indicators.forEach((ind, i) => {
+                ind.addEventListener('click', () => {
+                    clearInterval(bannerInterval);
+                    goToSlide(i);
+                    startBanner();
+                });
+            });
+
+            const banner = document.querySelector('.banner');
+            banner.addEventListener('mouseenter', () => clearInterval(bannerInterval));
+            banner.addEventListener('mouseleave', startBanner);
+
+            startBanner();
+
+            // 返回顶部功能
+            const backToTop = document.querySelector('.back-to-top');
+            window.addEventListener('scroll', () => {
+                backToTop.classList.toggle('visible', window.scrollY > 300);
+            });
+
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // 关闭通知
+            const noticeClose = document.querySelector('.notice-close');
+            const topNotice = document.querySelector('.top-notice');
+            noticeClose.addEventListener('click', () => {
+                topNotice.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
