@@ -184,6 +184,25 @@
             color: var(--jj-red);
         }
 
+        /* 分类菜单按钮 */
+        .category-toggle {
+            background: var(--jj-red);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            align-items: center;
+            gap: 8px;
+            display: flex;
+        }
+
+        .category-toggle:hover {
+            background: var(--jj-red-light);
+        }
+
         /* 主内容区 - 传统三栏布局 */
         .main-content {
             display: grid;
@@ -193,7 +212,7 @@
             align-items: start;
         }
 
-        /* 左侧边栏 */
+        /* 左侧边栏 - 悬停弹出式 */
         .sidebar {
             background: var(--jj-white);
             border-radius: 12px;
@@ -201,6 +220,7 @@
             padding: 25px;
             position: sticky;
             top: 100px;
+            transition: var(--transition);
         }
 
         .sidebar-section {
@@ -700,6 +720,10 @@
                 order: 3;
                 width: 100%;
             }
+            
+            .category-toggle {
+                display: none;
+            }
         }
 
         @media (max-width: 768px) {
@@ -772,6 +796,12 @@
                         <input type="text" placeholder="搜索小说、作者...">
                         <button class="search-btn"><i class="fas fa-search"></i></button>
                     </div>
+                    
+                    <!-- 分类菜单按钮 -->
+                    <button class="category-toggle">
+                        <i class="fas fa-bars"></i> 分类
+                    </button>
+                    
                     <a href="#" class="cart-btn">
                         <i class="fas fa-shopping-cart"></i>
                         购物车
@@ -1195,6 +1225,60 @@
             const topNotice = document.querySelector('.top-notice');
             noticeClose.addEventListener('click', () => {
                 topNotice.style.display = 'none';
+            });
+
+            // 悬停弹出分类栏功能
+            const categoryToggle = document.querySelector('.category-toggle');
+            const sidebar = document.querySelector('.sidebar');
+
+            // 鼠标悬停显示分类栏
+            categoryToggle.addEventListener('mouseenter', () => {
+                sidebar.style.opacity = '1';
+                sidebar.style.visibility = 'visible';
+                sidebar.style.transform = 'translateX(0)';
+            });
+
+            // 鼠标离开隐藏分类栏
+            categoryToggle.addEventListener('mouseleave', () => {
+                sidebar.style.opacity = '0';
+                sidebar.style.visibility = 'hidden';
+                sidebar.style.transform = 'translateX(-20px)';
+            });
+
+            // 分类栏自身悬停保持显示
+            sidebar.addEventListener('mouseenter', () => {
+                sidebar.style.opacity = '1';
+                sidebar.style.visibility = 'visible';
+                sidebar.style.transform = 'translateX(0)';
+            });
+
+            sidebar.addEventListener('mouseleave', () => {
+                sidebar.style.opacity = '0';
+                sidebar.style.visibility = 'hidden';
+                sidebar.style.transform = 'translateX(-20px)';
+            });
+
+            // 点击分类按钮切换显示/隐藏
+            categoryToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (sidebar.style.opacity === '1') {
+                    sidebar.style.opacity = '0';
+                    sidebar.style.visibility = 'hidden';
+                    sidebar.style.transform = 'translateX(-20px)';
+                } else {
+                    sidebar.style.opacity = '1';
+                    sidebar.style.visibility = 'visible';
+                    sidebar.style.transform = 'translateX(0)';
+                }
+            });
+
+            // 点击页面其他地方隐藏分类栏
+            document.addEventListener('click', (e) => {
+                if (!sidebar.contains(e.target) && !categoryToggle.contains(e.target)) {
+                    sidebar.style.opacity = '0';
+                    sidebar.style.visibility = 'hidden';
+                    sidebar.style.transform = 'translateX(-20px)';
+                }
             });
         });
     </script>
