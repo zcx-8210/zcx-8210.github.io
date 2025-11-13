@@ -108,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 500);
     });
 
-    // 关闭顶部通知
     const noticeClose = document.querySelector('.notice-close');
     const topNotice = document.querySelector('.top-notice');
     noticeClose.addEventListener('click', () => {

@@ -6,7 +6,6 @@
     <title>晋江文学城 - 精品小说平台</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 核心变量定义 */
         :root {
             --jj-red: #A62424;
             --jj-red-light: #C83636;
@@ -34,7 +33,6 @@
             min-height: 100vh;
         }
 
-        /* 顶部通知栏 */
         .top-notice {
             background: linear-gradient(135deg, var(--jj-red), var(--jj-red-light));
             color: white;
@@ -61,14 +59,12 @@
             background-color: rgba(255,255,255,0.2);
         }
 
-        /* 主容器 */
         .main-wrapper {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* 头部导航 */
         .main-header {
             background: var(--jj-white);
             box-shadow: var(--shadow);
@@ -103,7 +99,6 @@
             letter-spacing: 1px;
         }
 
-        /* 主导航 */
         .main-nav ul {
             display: flex;
             list-style: none;
@@ -127,7 +122,6 @@
             color: var(--jj-red);
         }
 
-        /* 搜索和用户操作 */
         .header-actions {
             display: flex;
             align-items: center;
@@ -167,6 +161,70 @@
             cursor: pointer;
         }
 
+        .user-menu {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f5efe8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--jj-gray);
+            transition: var(--transition);
+        }
+
+        .user-menu:hover .user-avatar {
+            background-color: var(--jj-red);
+            color: white;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 180px;
+            background: var(--jj-white);
+            border-radius: 10px;
+            box-shadow: var(--shadow-hover);
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 100;
+        }
+
+        .user-menu:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .menu-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .menu-item:hover {
+            background-color: #f5efe8;
+            color: var(--jj-red);
+        }
+
+        .menu-divider {
+            height: 1px;
+            background-color: var(--jj-border);
+            margin: 5px 0;
+        }
+
         .cart-btn {
             display: flex;
             align-items: center;
@@ -184,26 +242,6 @@
             color: var(--jj-red);
         }
 
-        /* 分类菜单按钮 */
-        .category-toggle {
-            background: var(--jj-red);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 500;
-            align-items: center;
-            gap: 8px;
-            display: flex;
-        }
-
-        .category-toggle:hover {
-            background: var(--jj-red-light);
-        }
-
-        /* 主内容区 - 传统三栏布局 */
         .main-content {
             display: grid;
             grid-template-columns: 220px 1fr 300px;
@@ -212,7 +250,6 @@
             align-items: start;
         }
 
-        /* 左侧边栏 - 悬停弹出式 */
         .sidebar {
             background: var(--jj-white);
             border-radius: 12px;
@@ -268,12 +305,10 @@
             transform: translateX(5px);
         }
 
-        /* 中间内容区 */
         .content-area {
             min-height: 800px;
         }
 
-        /* 轮播图 */
         .banner {
             position: relative;
             height: 400px;
@@ -343,7 +378,6 @@
             transform: scale(1.2);
         }
 
-        /* 内容区块 */
         .content-section {
             background: var(--jj-white);
             border-radius: 12px;
@@ -386,14 +420,12 @@
             color: var(--jj-red);
         }
 
-        /* 小说网格 */
         .novel-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 25px;
         }
 
-        /* 小说卡片 */
         .novel-card {
             background: var(--jj-white);
             border-radius: 10px;
@@ -503,7 +535,6 @@
             font-size: 16px;
         }
 
-        /* 右侧边栏 */
         .promotion-sidebar {
             position: sticky;
             top: 100px;
@@ -561,7 +592,6 @@
             color: var(--jj-gray);
         }
 
-        /* 页脚 */
         .main-footer {
             background: var(--jj-white);
             border-top: 1px solid var(--jj-border);
@@ -613,7 +643,6 @@
             font-size: 14px;
         }
 
-        /* 悬浮元素 */
         .floating-cart {
             position: fixed;
             right: 30px;
@@ -685,7 +714,159 @@
             color: white;
         }
 
-        /* 响应式设计 */
+        .login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .login-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .login-container {
+            background: var(--jj-white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-hover);
+            width: 400px;
+            max-width: 90%;
+            padding: 30px;
+            transform: translateY(-20px);
+            transition: var(--transition);
+        }
+
+        .login-modal.active .login-container {
+            transform: translateY(0);
+        }
+
+        .login-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .login-title {
+            font-size: 22px;
+            color: var(--jj-red);
+            font-weight: 700;
+        }
+
+        .login-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--jj-gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .login-close:hover {
+            color: var(--jj-red);
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--jj-text);
+        }
+
+        .form-group input {
+            padding: 12px 15px;
+            border: 1px solid var(--jj-border);
+            border-radius: 8px;
+            background-color: #f5efe8;
+            outline: none;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .form-group input:focus {
+            border-color: var(--jj-red-light);
+            background-color: var(--jj-white);
+            box-shadow: 0 0 0 2px rgba(166, 36, 36, 0.1);
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .forgot-password {
+            color: var(--jj-red);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            padding: 12px;
+            background: var(--jj-red);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .login-btn:hover {
+            background: var(--jj-red-light);
+            transform: translateY(-2px);
+        }
+
+        .login-footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--jj-gray);
+        }
+
+        .register-link {
+            color: var(--jj-red);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .register-link:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 1200px) {
             .main-content {
                 grid-template-columns: 200px 1fr 280px;
@@ -719,10 +900,6 @@
             .search-box {
                 order: 3;
                 width: 100%;
-            }
-            
-            .category-toggle {
-                display: none;
             }
         }
 
@@ -765,7 +942,6 @@
     </style>
 </head>
 <body>
-    <!-- 顶部通知 -->
     <div class="top-notice">
         <div class="main-wrapper">
             国庆特惠：全场小说限时8折，新用户注册即享5元优惠券！
@@ -773,7 +949,6 @@
         </div>
     </div>
 
-    <!-- 主头部 -->
     <header class="main-header">
         <div class="main-wrapper">
             <div class="header-content">
@@ -797,10 +972,30 @@
                         <button class="search-btn"><i class="fas fa-search"></i></button>
                     </div>
                     
-                    <!-- 分类菜单按钮 -->
-                    <button class="category-toggle">
-                        <i class="fas fa-bars"></i> 分类
-                    </button>
+                    <div class="user-menu">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="dropdown-menu">
+                            <div class="menu-item" id="login-btn">
+                                <i class="fas fa-sign-in-alt"></i>
+                                <span>登录</span>
+                            </div>
+                            <div class="menu-divider"></div>
+                            <div class="menu-item">
+                                <i class="fas fa-heart"></i>
+                                <span>我的收藏</span>
+                            </div>
+                            <div class="menu-item">
+                                <i class="fas fa-history"></i>
+                                <span>阅读历史</span>
+                            </div>
+                            <div class="menu-item">
+                                <i class="fas fa-cog"></i>
+                                <span>账户设置</span>
+                            </div>
+                        </div>
+                    </div>
                     
                     <a href="#" class="cart-btn">
                         <i class="fas fa-shopping-cart"></i>
@@ -811,10 +1006,8 @@
         </div>
     </header>
 
-    <!-- 主内容 -->
     <div class="main-wrapper">
         <div class="main-content">
-            <!-- 左侧边栏 -->
             <aside class="sidebar">
                 <div class="sidebar-section">
                     <h3 class="sidebar-title"><i class="fas fa-list"></i> 小说分类</h3>
@@ -840,9 +1033,7 @@
                 </div>
             </aside>
 
-            <!-- 中间内容区 -->
             <main class="content-area">
-                <!-- 轮播图 -->
                 <section class="banner">
                     <div class="banner-item active">
                         <img src="小蘑菇.png" alt="小蘑菇" class="banner-img">
@@ -994,7 +1185,6 @@
                     </div>
                 </section>
 
-                <!-- 新书推荐 -->
                 <section class="content-section">
                     <div class="section-header">
                         <h2 class="section-title"><i class="fas fa-star"></i> 新书推荐</h2>
@@ -1074,7 +1264,6 @@
                     </div>
                 </div>
 
-                <!-- 热门作者 -->
                 <div class="promotion-card">
                     <h3 class="sidebar-title"><i class="fas fa-user-edit"></i> 热门作者</h3>
                     <div class="promotion-item">
@@ -1109,7 +1298,6 @@
         </div>
     </div>
 
-    <!-- 页脚 -->
     <footer class="main-footer">
         <div class="main-wrapper">
             <div class="footer-content">
@@ -1156,17 +1344,44 @@
         </div>
     </footer>
 
-    <!-- 悬浮购物车 -->
     <div class="floating-cart">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-count">3</span>
     </div>
 
-    <!-- 返回顶部 -->
     <button class="back-to-top"><i class="fas fa-arrow-up"></i></button>
 
+    <div class="login-modal">
+        <div class="login-container">
+            <div class="login-header">
+                <h2 class="login-title">用户登录</h2>
+                <button class="login-close"><i class="fas fa-times"></i></button>
+            </div>
+            <form class="login-form">
+                <div class="form-group">
+                    <label for="username">用户名/邮箱</label>
+                    <input type="text" id="username" name="username" placeholder="请输入用户名或邮箱" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" name="password" placeholder="请输入密码" required>
+                </div>
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">记住我</label>
+                    </div>
+                    <a href="#" class="forgot-password">忘记密码?</a>
+                </div>
+                <button type="submit" class="login-btn">登录</button>
+                <div class="login-footer">
+                    还没有账号? <a href="#" class="register-link">立即注册</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
-        // 轮播图功能
         document.addEventListener('DOMContentLoaded', function() {
             const bannerItems = document.querySelectorAll('.banner-item');
             const indicators = document.querySelectorAll('.indicator');
@@ -1207,7 +1422,6 @@
 
             startBanner();
 
-            // 返回顶部功能
             const backToTop = document.querySelector('.back-to-top');
             window.addEventListener('scroll', () => {
                 backToTop.classList.toggle('visible', window.scrollY > 300);
@@ -1220,65 +1434,35 @@
                 });
             });
 
-            // 关闭通知
             const noticeClose = document.querySelector('.notice-close');
             const topNotice = document.querySelector('.top-notice');
             noticeClose.addEventListener('click', () => {
                 topNotice.style.display = 'none';
             });
 
-            // 悬停弹出分类栏功能
-            const categoryToggle = document.querySelector('.category-toggle');
-            const sidebar = document.querySelector('.sidebar');
+            const loginBtn = document.getElementById('login-btn');
+            const loginModal = document.querySelector('.login-modal');
+            const loginClose = document.querySelector('.login-close');
 
-            // 鼠标悬停显示分类栏
-            categoryToggle.addEventListener('mouseenter', () => {
-                sidebar.style.opacity = '1';
-                sidebar.style.visibility = 'visible';
-                sidebar.style.transform = 'translateX(0)';
+            loginBtn.addEventListener('click', () => {
+                loginModal.classList.add('active');
             });
 
-            // 鼠标离开隐藏分类栏
-            categoryToggle.addEventListener('mouseleave', () => {
-                sidebar.style.opacity = '0';
-                sidebar.style.visibility = 'hidden';
-                sidebar.style.transform = 'translateX(-20px)';
+            loginClose.addEventListener('click', () => {
+                loginModal.classList.remove('active');
             });
 
-            // 分类栏自身悬停保持显示
-            sidebar.addEventListener('mouseenter', () => {
-                sidebar.style.opacity = '1';
-                sidebar.style.visibility = 'visible';
-                sidebar.style.transform = 'translateX(0)';
-            });
-
-            sidebar.addEventListener('mouseleave', () => {
-                sidebar.style.opacity = '0';
-                sidebar.style.visibility = 'hidden';
-                sidebar.style.transform = 'translateX(-20px)';
-            });
-
-            // 点击分类按钮切换显示/隐藏
-            categoryToggle.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (sidebar.style.opacity === '1') {
-                    sidebar.style.opacity = '0';
-                    sidebar.style.visibility = 'hidden';
-                    sidebar.style.transform = 'translateX(-20px)';
-                } else {
-                    sidebar.style.opacity = '1';
-                    sidebar.style.visibility = 'visible';
-                    sidebar.style.transform = 'translateX(0)';
+            loginModal.addEventListener('click', (e) => {
+                if (e.target === loginModal) {
+                    loginModal.classList.remove('active');
                 }
             });
 
-            // 点击页面其他地方隐藏分类栏
-            document.addEventListener('click', (e) => {
-                if (!sidebar.contains(e.target) && !categoryToggle.contains(e.target)) {
-                    sidebar.style.opacity = '0';
-                    sidebar.style.visibility = 'hidden';
-                    sidebar.style.transform = 'translateX(-20px)';
-                }
+            const loginForm = document.querySelector('.login-form');
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('登录功能将在后端实现');
+                loginModal.classList.remove('active');
             });
         });
     </script>
